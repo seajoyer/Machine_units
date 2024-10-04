@@ -38,7 +38,7 @@
           #!${pythonEnv}/bin/python
           import sys
           sys.path.insert(0, "${./.}")
-          exec(open("py/main.py").read())
+          exec(open("Machine_units/py/main.py").read())
         '';
 
       in {
@@ -64,7 +64,7 @@
             pyright
           ];
 
-          buildInputs = with pkgs; [ clang eigen pythonEnv ];
+          buildInputs = with pkgs; [ clangreigen pythonEnv ];
 
           EIGEN_PATH = "${pkgs.eigen}/include/eigen3";
 
