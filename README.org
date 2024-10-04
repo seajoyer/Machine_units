@@ -1,0 +1,97 @@
+* Homework on floating point numbers
+
+The project provides C++ and Python programs to determine machine epsilon, the maximum (giant), and minimum (dwarf) possible values of a floating-point number of different precisions:
+
+- half-precision (16-bit)
+- single-precision (32-bit)
+- double-precision (64-bit)
+
+** Navigation
+- [[#building-c][Building C++]]
+  - [[#for-nix-users][For Nix users]]
+  - [[#manually][Manually]]
+- [[#running-python][Running Python]]
+  - [[#for-nix-users-1][For Nix users]]
+  - [[#manually-1][Manually]]
+
+** Building C++
+
+*** For Nix users
+
+For lucky Nix users, to build and run the project, it's enough to execute:
+#+begin_src shell
+nix run github:seajoyer/SupCo#machine_units-cpp --impure
+#+end_src shell
+Replace ~#machine_units-cpp~ with ~#machine_units-py~ to run the Python program.
+
+You can also start an isolated development shell with all the dependencies by simply running:
+#+begin_src shell
+nix develop github:seajoyer/SupCo#machine_units
+#+end_src shell
+
+*** Manually
+
+**** Prerequisites
+
+First, install dependencies, this is done differently in different systems:
+
+- [[https://gcc.gnu.org/][g++]] compiler
+- [[https://www.gnu.org/software/make/#download][Make]] build system
+- [[https://eigen.tuxfamily.org/][Eigen]] library
+
+**** Building & Running
+
+1. Clone the repository:
+   #+begin_src shell
+   git clone https://github.com/seajoyer/SupCo
+   cd SupCo/Machine_units
+   #+end_src shell
+2. Set the ~EIGEN_PATH~ environment variable to point to your Eigen installation. On most Unix-like systems, Eigen installs to ~/usr/include/eigen3~ or ~/usr/local/include/eigen3~. You can set the variable like this:
+   #+begin_src shell
+   export EIGEN_PATH=/path/to/eigen3
+   #+end_src shell
+3. And once you are ready:
+
+   ~make~ to build
+
+   ~make run~ to build & run
+
+   ~make clean~ to clean the ~build~ directory
+
+   ~make help~ to see a help message
+
+** Running Python
+
+*** For Nix users
+
+To run the python program, execute:
+
+#+begin_src shell
+nix run github:seajoyer/SupCo#machine_units-py --impure
+#+end_src shell
+
+To enter the isolated development shell with installed Python and NumPy:
+#+begin_src shell
+nix develop github:seajoyer/SupCo#machine_units --impure
+#+end_src shell
+
+*** Manually
+
+**** Prerequisites
+
+- Python itself
+- NumPy library
+
+Install them to your system.
+
+**** Running
+
+1. Clone the repo if haven't yet
+   #+begin_src shell
+   git clone https://github.com/seajoyer/SupCo
+   cd SupCo/Machine_units
+   #+end_src shell
+2. Then just execute:
+   #+begin_src shell
+   python3 py/main.py
+   #+end_src shell
