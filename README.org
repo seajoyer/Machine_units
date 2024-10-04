@@ -26,7 +26,7 @@ Replace ~#cpp~ with ~#py~ to run the Python program.
 
 You can also start an isolated development shell with all the dependencies by simply running:
 #+begin_src shell
-nix develop github:seajoyer/SupCo#machine_units
+nix develop github:seajoyer/Machine_units
 #+end_src shell
 
 *** Manually
@@ -43,8 +43,8 @@ First, install dependencies, this is done differently in different systems:
 
 1. Clone the repository:
    #+begin_src shell
-   git clone https://github.com/seajoyer/SupCo
-   cd SupCo/Machine_units
+   git clone https://github.com/seajoyer/Machine_units
+   cd Machine_units
    #+end_src shell
 2. Set the ~EIGEN_PATH~ environment variable to point to your Eigen installation. On most Unix-like systems, Eigen installs to ~/usr/include/eigen3~ or ~/usr/local/include/eigen3~. You can set the variable like this:
    #+begin_src shell
