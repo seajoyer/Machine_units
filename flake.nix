@@ -16,7 +16,7 @@
           name = "Machine_units";
           src = ./.;
 
-          nativeBuildInputs = with pkgs; [ gnumake ];
+          nativeBuildInputs = with pkgs; [ gnumake libgcc ];
 
           buildInputs = with pkgs; [ eigen ];
 
@@ -38,7 +38,7 @@
           #!${pythonEnv}/bin/python
           import sys
           sys.path.insert(0, "${./.}")
-          exec(open("Machine_units/py/main.py").read())
+          exec(open("py/main.py").read())
         '';
 
       in {
@@ -57,19 +57,20 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
             ccache
+            libgcc
             gnumake
             git
             git-filter-repo
             pyright
           ];
 
-          buildInputs = with pkgs; [ clang libcxx eigen pythonEnv ];
+          buildInputs = with pkgs; [ clang eigen pythonEnv ];
 
           EIGEN_PATH = "${pkgs.eigen}/include/eigen3";
 
           shellHook = ''
-            export CC=clang
-            export CXX=clang++
+            export CC=gcc
+            export CXX=g++
             export CXXFLAGS="-I${pkgs.eigen}/include/eigen3 ''${CXXFLAGS:-}"
 
             export CCACHE_DIR=$HOME/.ccache
@@ -79,7 +80,7 @@
 
             echo "C++ and Python Development Environment"
             echo "======================================"
-            echo "$(clang --version | head -n 1)"
+            echo "$(g++ --version | head -n 1)"
             echo "$(python --version)"
             echo "Eigen ${pkgs.eigen.version}"
             echo "$(make --version | head -n 1)"

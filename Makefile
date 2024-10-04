@@ -1,12 +1,10 @@
-CXX := g++
+CXX ?= g++
 CXXFLAGS := -std=c++20 -Wall -Wextra -O2
 LDFLAGS :=
 
 SRC_DIR := src
-LIB_DIR := lib
 BUILD_DIR := build
 
-# Use EIGEN_PATH environment variable
 ifdef EIGEN_PATH
     CXXFLAGS += -I$(EIGEN_PATH)
 else
@@ -29,10 +27,6 @@ $(TARGET): $(OBJS)
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# $(BUILD_DIR)/%.o: $(LIB_DIR)/src/%.cpp
-# 	@mkdir -p $(@D)
-# 	$(CXX) $(CXXFLAGS) -I$(LIB_DIR)/include -c $< -o $@
 
 clean:
 	rm -rf $(BUILD_DIR)
