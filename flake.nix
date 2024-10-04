@@ -43,14 +43,14 @@
 
       in {
         packages = {
-          machine_units-cpp = cppProject;
-          machine_units-py = pythonProject;
+          cpp = cppProject;
+          py = pythonProject;
           default = cppProject;
         };
 
         apps = {
-          machine_units-cpp = flake-utils.lib.mkApp { drv = cppProject; };
-          machine_units-py = flake-utils.lib.mkApp { drv = pythonProject; };
+          cpp = flake-utils.lib.mkApp { drv = cppProject; };
+          py = flake-utils.lib.mkApp { drv = pythonProject; };
           default = flake-utils.lib.mkApp { drv = cppProject; };
         };
 
@@ -85,9 +85,9 @@
             echo "Eigen ${pkgs.eigen.version}"
             echo "$(make --version | head -n 1)"
             echo ""
-            echo "Build C++ project:  nix build .#machine_units-cpp"
-            echo "Run C++ project:    nix run   .#machine_units-cpp"
-            echo "Run Python project: nix run   .#machine_units-py"
+            echo "Build C++ project:  nix build .#cpp"
+            echo "Run C++ project:    nix run   .#cpp"
+            echo "Run Python project: nix run   .#py"
             echo ""
             echo "Happy coding!"
           '';
