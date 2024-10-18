@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import warnings
 import numpy as np
 
@@ -26,9 +24,13 @@ def mchgiant(T, init):
         giant *= T(2.0)
     return giant
 
-print("-" * 25)
-for T in [np.float16, np.float32, np.float64]:
-    print(f"Data type: {np.dtype(T).name}")
-    print(f"  Epsilon: {mcheps(T, T(1.0))}")
-    print(f"  Dwarf:   {mchdwarf(T, T(1.0))}")
-    print(f"  Giant:   {mchgiant(T, T(1.0))}\n")
+def main():
+    print("-" * 25)
+    for T in [np.float16, np.float32, np.float64]:
+        print(f"Data type: {np.dtype(T).name}")
+        print(f"  Epsilon: {mcheps(T, T(1.0))}")
+        print(f"  Dwarf:   {mchdwarf(T, T(1.0))}")
+        print(f"  Giant:   {mchgiant(T, T(1.0))}\n")
+
+if __name__ == "__main__":
+    main()
